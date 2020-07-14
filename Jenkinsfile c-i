@@ -5,12 +5,12 @@ node {
     Credentials (name: 'Client_Secret')
     Credentials (name: 'Tenant_ID')
   }*/
-  environment{
+  /*environment{
     subscription_id = "${params.Subscription_ID}"
     client_id = "${params.Client_ID}"
     tenant_id = "${params.Tenant_ID}"
     client_secret = "${params.Client_Secret}"
-}
+}*/
   stage('SCM Checkout & cloning'){
     git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
 }
@@ -36,46 +36,6 @@ node {
       sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
 }
 }	*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
