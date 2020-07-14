@@ -5,12 +5,12 @@ node {
     Credentials (name: 'Client_Secret')
     Credentials (name: 'Tenant_ID')
   }
-  /*environment{
+  environment{
     Subscription_ID = "${params.Subscription_ID}"
     Client_ID = "${params.Client_ID}"
     Tenant_ID = "${params.Tenant_ID}"
     Client_Secret = "${params.Client_Secret}"
-}*/
+}
   stage('SCM Checkout & cloning'){
     git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
 }
