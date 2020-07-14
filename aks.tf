@@ -1,8 +1,8 @@
 provider "azurerm" {
-  subscription_id = var.Subscription_ID
-  client_id       = var.Client_ID
-  client_secret   = var.Client_Secret
-  tenant_id       = var.Tenant_ID
+  Subscription_ID = "$param.Subscription_ID"
+  Client_ID       = "$param.Client_ID"
+  Client_Secret   = "$param.Client_Secret"
+  Tenant_ID       = "$param.Tenant_ID"
 
   version =  "~> 2.18"
   features {}
