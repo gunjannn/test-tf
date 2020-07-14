@@ -1,21 +1,21 @@
 
-variable "Client_ID" {
-  default = "${params.Client_ID}"
+variable "client_id" {
+ /* default = "${params.Client_ID}"*/
   description = "The Client ID (appId) for the Service Principal used for the AKS deployment"
 }
 
-variable "Client_Secret" {
-  default = "${params.Client_Secret}"
+variable "client_secret" {
+  /*default = "${params.Client_Secret}"*/
   description = "The Client Secret (password) for the Service Principal used for the AKS deployment"
 }
 
-variable "Subscription_ID" {
-  default = "${params.Subscription_ID}"
+variable "subscription_id" {
+ /* default = "${params.Subscription_ID}"*/
   description = "The Subscription ID for the Service Principal used for the AKS deployment"
 }
 
-variable "Tenant_ID" {
-  default = "${params.Tenant_ID}"
+variable "tenant_id" {
+ /* default = "${params.Tenant_ID}"*/
   description = "The Tenant Id for the Service Principal used for the AKS deployment"
 }
 
