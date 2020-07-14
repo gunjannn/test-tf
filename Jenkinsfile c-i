@@ -24,7 +24,7 @@ node {
            
       
   stage('TerraformApply') {
-    withCredentials([string(credentialsId: 'az', variable: 'Client_ID'), string(credentialsId: 'az', variable: 'Client_Secret'), string(credentialsId: 'az', variable: 'Subscription_ID'), string(credentialsID: 'az', variable: 'Tenant_ID')]) { 
+    withCredentials([string(credentialsId: 'az', variable: 'AZURE_CLIENT_ID'), string(credentialsId: 'az', variable: 'AZURE_CLIENT_SECRET'), string(credentialsId: 'az', variable: 'AZURE_SUBSCRIPTION_ID'), string(credentialsID: 'az', variable: 'AZURE_TENANT_ID')]) { 
     sh "terraform init -input=false"
     sh "terraform validate"
     sh "terraform plan -out=tfplan -input=false"
