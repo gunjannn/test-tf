@@ -27,7 +27,8 @@ node {
     withCredentials([azureServicePrincipal('az')]) {
     sh "terraform init -input=false"
     sh "terraform validate"
-    sh 'terraform plan -out=tfplan -input=false  --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+    sh "terraform plan -out=tfplan -input=false  --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID"
+    sh "terraform apply -input=false tfplan --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID"
 }
 }
     /*withCredentials([string(credentialsId: 'az', variable: 'AZURE_CLIENT_ID'), string(credentialsId: 'az', variable: 'AZURE_CLIENT_SECRET'), string(credentialsId: 'az', variable: 'AZURE_SUBSCRIPTION_ID'), string(credentialsID: 'az', variable: 'AZURE_TENANT_ID')]) { 
