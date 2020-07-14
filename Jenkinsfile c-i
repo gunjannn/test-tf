@@ -1,1 +1,128 @@
+node {
+  parameters {
+    password (name: 'Subscription_ID')
+    password (name: 'Client_ID')
+    password (name: 'Client_Secret')
+    password (name: 'Tenant_ID')
+  }
+  environment{
+    Subscription_ID = "${params.Subscription_ID}"
+    Client_ID = "${params.Client_ID}"
+    Tenant_ID = "${params.Tenant_ID}"
+    Client_Secret = "${params.Client_Secret}"
+}
+  stage('SCM Checkout & cloning'){
+    git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
+}
 
+  stage('Setterraformpath') {
+    def tfHome = tool name: 'terraform'
+      env.PATH = "${tfHome}:${env.PATH}"
+ }
+      sh 'terraform version'
+ }
+           
+      
+  stage('TerraformApply') {
+    sh "terraform init -input=false"
+    sh "terraform validate"
+    sh "terraform plan -out=tfplan -input=false -var=var.tf"
+    sh "terraform apply -input=false tfplan -var=var.tf"
+      }
+    
+	
+  /*stage('InfraTesting') {
+    withCredentials([azureServicePrincipal('az')]) {
+      sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
+}
+}	*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*node {
+  stage('SCM Checkout & cloning'){
+    git url:  'https://github.com/gunjannn/c-i.git',branch: 'master'
+}
+
+  stage('Setterraformpath') {
+    script {
+      def tfHome = tool name: 'terraform'
+      env.PATH = "${tfHome}:${env.PATH}"
+ }
+      sh 'terraform version'
+ }
+            
+      
+  stage('TerraformApply') {
+
+    sh "terraform init"
+}
+   
+   stage('TerraformPlan') { 
+      sh "terraform plan -out=tfplan -input=false"
+}*/
+      
+ /* stage('changing dir') {
+    dir ('c-i') {
+    sh 'pwd'
+}
+}
+
+  stage('TerraformApply') {
+    sh "terraform apply -input=false tfplan"
+}
+
+  stage('InfraTesting') {
+  withCredentials([azureServicePrincipal('az')]) {
+   
+    sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
+}
+	
+}
+}*/
+
+© 2020 GitHub, Inc.
