@@ -24,13 +24,19 @@ node {
            
       
   stage('TerraformApply') {
-    withCredentials([string(credentialsId: 'az', variable: 'AZURE_CLIENT_ID'), string(credentialsId: 'az', variable: 'AZURE_CLIENT_SECRET'), string(credentialsId: 'az', variable: 'AZURE_SUBSCRIPTION_ID'), string(credentialsID: 'az', variable: 'AZURE_TENANT_ID')]) { 
+    withCredentials([azureServicePrincipal('credentials_id')]) {
+    sh "terraform init -input=false"
+    sh "terraform validate"
+    sh 'terraform plan -out=tfplan -input=false  --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+}
+}
+    /*withCredentials([string(credentialsId: 'az', variable: 'AZURE_CLIENT_ID'), string(credentialsId: 'az', variable: 'AZURE_CLIENT_SECRET'), string(credentialsId: 'az', variable: 'AZURE_SUBSCRIPTION_ID'), string(credentialsID: 'az', variable: 'AZURE_TENANT_ID')]) { 
     sh "terraform init -input=false"
     sh "terraform validate"
     sh "terraform plan -out=tfplan -input=false"
     sh "terraform apply -input=false tfplan"
       }
-    }	
+    }	*/
   /*stage('InfraTesting') {
     withCredentials([azureServicePrincipal('az')]) {
       sh "inspec exec AKS -t azure://64b70538-bc40-4492-9c4b-13f8b43e732d"
